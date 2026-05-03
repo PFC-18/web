@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGHS FUTSAL S3 | BATCH 111</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+<style>
+    /* --- 1. Variables & Root --- */
+    :root {
+        --brand-red: #e63946;
+        --brand-navy: #1d3557;
+        --ispahani-green: #006837;
+        --pure-white: #ffffff;
+        --off-white: #f8f9fa;
+        --accent-gold: #b8860b; 
+        --bright-gold: #d4af37;
+        --text-main: #2b2d42;
+        --text-black: #000000;
+        --text-light: #8d99ae;
+        --border-light: rgba(0, 0, 0, 0.08);
+
+        --fs-h1: clamp(2rem, 5vw + 1rem, 3.5rem);
+        --fs-h2: clamp(1.5rem, 3vw + 1rem, 2.2rem);
+        --fs-body: clamp(0.95rem, 0.5vw + 0.8rem, 1.15rem);
+        --fs-tag: clamp(0.7rem, 0.2vw + 0.6rem, 0.85rem);
+        --fs-price: clamp(1.4rem, 3vw + 0.5rem, 2rem);
+    }
+
+    /* --- 2. Global Reset & Typography --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+        background-color: var(--off-white);
+        color: var(--text-main);
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    p { 
+        text-align: justify; /* Justified alignment for all paragraphs */
+    }
+
+    .container { 
+        width: 100%; max-width: 1200px; 
+        margin: 0 auto; padding: 100px 20px 60px 20px; 
+    }
+
+    /* --- 3. Header & Navigation --- */
+    .app-header {
+        position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+        background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px);
+        z-index: 1001; padding: 0 5%; display: flex;
+        align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-light);
+    }
+
+    .brand-title { font-weight: 800; color: var(--brand-navy); font-size: clamp(1.1rem, 2vw, 1.4rem); }
+    .hamburger-btn { font-size: 2rem; color: var(--ispahani-green); cursor: pointer; }
+
+    .side-menu {
+        position: fixed; top: 0; right: -100%;
+        width: 100%; max-width: 400px; height: 100vh;
+        background: var(--pure-white); z-index: 2000;
+        transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        padding: 100px 50px; display: flex; flex-direction: column; gap: 30px;
+        box-shadow: -15px 0 40px rgba(0,0,0,0.1);
+    }
+    .side-menu.active { right: 0; }
+    .side-menu a { 
+        color: var(--text-black); 
+        text-decoration: none; 
+        font-size: 1.8rem; 
+        font-weight: 800; 
+        font-family: 'Oswald', sans-serif;
+        letter-spacing: 1px;
+        transition: 0.3s ease;
+        border-bottom: 1px solid var(--border-light);
+        padding-bottom: 8px;
+        text-transform: uppercase;
+    }
+    .side-menu a:hover { 
+        color: var(--accent-gold); 
+        padding-left: 10px;
+        border-bottom: 1px solid var(--accent-gold);
+    }
+    .side-menu a.active { 
+        color: var(--ispahani-green); 
+        border-bottom: 3px solid var(--ispahani-green); 
+    }
+    .close-menu { 
+        position: absolute; top: 25px; right: 25px; 
+        color: var(--text-black); font-size: 2.5rem; cursor: pointer; 
+        transition: 0.3s;
+    }
+    .close-menu:hover { color: var(--brand-red); transform: rotate(90deg); }
+
+    /* --- 4. Cards & Layout UI --- */
+    .glass-card { background: var(--pure-white); border-radius: 40px; padding: clamp(1.5rem, 5vw, 3rem); margin-bottom: 30px; box-shadow: 0 15px 45px rgba(0,0,0,0.03); }
+    h1 { font-size: var(--fs-h1); font-weight: 800; color: var(--brand-navy); line-height: 1.1; margin-bottom: 10px; }
+    h2 { font-size: var(--fs-h2); font-weight: 800; color: var(--brand-navy); }
+    .sub-tag { color: var(--text-light); font-size: var(--fs-body); font-weight: 600; margin-bottom: 30px; display: block; }
+
+    .branding-row { display: flex; justify-content: center; gap: clamp(10px, 3vw, 30px); margin-bottom: 30px; }
+    .logo-box { 
+        width: clamp(90px, 12vw, 130px); height: clamp(90px, 12vw, 130px); 
+        background: white; border-radius: 30px; padding: 8px; display: flex; 
+        align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden;
+    }
+    .logo-box img { width: 100%; height: 100%; object-fit: contain; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
+    .info-box { background: var(--off-white); padding: clamp(15px, 3vw, 25px); border-radius: 25px; border: 1px solid var(--border-light); }
+    .info-val { font-size: var(--fs-body); font-weight: 800; color: var(--brand-navy); display: block; }
+    .info-lbl { font-size: var(--fs-tag); text-transform: uppercase; font-weight: 700; color: var(--text-light); }
+
+    /* --- 5. About & Text --- */
+    .about-p { font-size: var(--fs-body); margin-bottom: 20px; color: var(--text-main); }
+    .about-highlight { color: var(--ispahani-green); font-weight: 700; }
+    .hero-manifesto {
+        background: var(--off-white); padding: clamp(20px, 5vw, 40px); border-radius: 30px; 
+        font-size: var(--fs-body); text-align: justify; border: 1px solid var(--border-light); margin-bottom: 30px;
+    }
+
+    /* --- 6. Squad & Roster --- */
+    .squad-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(10px, 2vw, 20px); }
+    .manager-card {
+        grid-column: 1 / -1; background: var(--brand-navy); color: white;
+        padding: clamp(20px, 4vw, 35px); border-radius: 30px; display: flex; 
+        align-items: center; gap: 20px; margin-bottom: 10px;
+    }
+    .manager-card i { font-size: clamp(2.5rem, 6vw, 3.5rem); color: #d4af37; }
+    .m-name { font-size: var(--fs-h2); font-weight: 800; line-height: 1.2; }
+    .m-label { font-size: var(--fs-tag); color: #d4af37; font-weight: 800; text-transform: uppercase; }
+
+    .player-box {
+        background: linear-gradient(145deg, #ffffff, #f4f7f4);
+        aspect-ratio: 1/1.1; border-radius: 30px; padding: clamp(15px, 3vw, 25px);
+        display: flex; flex-direction: column; justify-content: flex-end; position: relative;
+        border: 1px solid var(--border-light);
+    }
+    .captain-badge {
+        position: absolute; top: 15px; right: 15px; background: var(--ispahani-green);
+        color: white; width: 35px; height: 35px; border-radius: 12px;
+        display: flex; align-items: center; justify-content: center; font-family: 'Oswald'; font-weight: 700;
+    }
+
+    /* --- 7. Jersey Store --- */
+    .jersey-layout { display: block; }
+    .size-grid { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+    .size-chip {
+        background: var(--off-white); border: 1px solid var(--border-light);
+        padding: 8px 12px; border-radius: 10px; font-weight: 800;
+        font-family: 'Oswald'; color: var(--brand-navy); font-size: 0.9rem;
+    }
+    .price-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+    .price-box { background: var(--off-white); padding: 15px; border-radius: 20px; border: 1px solid var(--border-light); text-align: center; }
+    .price-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--text-light); display: block; }
+    .price-value { font-size: var(--fs-price); font-weight: 800; color: var(--ispahani-green); font-family: 'Oswald'; }
+
+    /* --- 8. Buttons & Animations --- */
+    .btn-action { 
+        display: flex; align-items: center; justify-content: center; gap: 10px; 
+        color: white; padding: clamp(15px, 2vw, 20px); border-radius: 20px; 
+        font-size: var(--fs-body); font-weight: 700; text-decoration: none; background: var(--ispahani-green);
+    }
+
+    .section { display: none; animation: slideUp 0.6s ease; }
+    .section.active { display: block; }
+
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- 9. Responsive Breakpoints --- */
+    @media (min-width: 768px) {
+        .info-grid, .squad-grid { grid-template-columns: repeat(4, 1fr); }
+        .manager-card { grid-column: span 2; }
+        .jersey-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    }
+</style>
+</head>
+<body>
+
+    <div class="side-menu" id="sideMenu">
+        <div class="close-menu" onclick="toggleMenu()">&times;</div>
+        <a href="javascript:void(0)" class="menu-item active" onclick="nav('home')">HOME</a>
+        <a href="javascript:void(0)" class="menu-item" onclick="nav('squad')">SQUAD</a>
+        <a href="javascript:void(0)" class="menu-item" onclick="nav('jersey')">JERSEY</a>
+        <a href="javascript:void(0)" class="menu-item" onclick="nav('about')">ABOUT US</a>
+    </div>
+
+    <header class="app-header">
+        <div class="brand-title">PREDATORS FC</div>
+        <div class="hamburger-btn" onclick="toggleMenu()"><i class="fas fa-bars-staggered"></i></div>
+    </header>
+
+    <div class="container">
+        
+        <section id="home" class="section active">
+            <div class="glass-card" style="text-align: center;">
+                <div class="branding-row">
+                    <div class="logo-box"><img src="S3.png" alt="Predators FC"></div>
+                    <div class="logo-box"><img src="logo.jpg" alt="Batch 111"></div>
+                </div>
+                <h1>PREDATORS FC</h1>
+                <span class="sub-tag">CGHS SSC 2018 | BATCH 111</span>
+
+                <div class="info-grid">
+                    <div class="info-box"><span class="info-val">30-31 May</span><span class="info-lbl">Tournament</span></div>
+                    <div class="info-box"><span class="info-val">Oxygen Sports</span><span class="info-lbl">Venue</span></div>
+                    <div class="info-box"><span class="info-val">16 Teams</span><span class="info-lbl">Junior Tier</span></div>
+                    <div class="info-box"><span class="info-val">12 Teams</span><span class="info-lbl">Senior Tier</span></div>
+                </div>
+
+                <div class="hero-manifesto">
+                    Honoring the heritage of being a <strong>CGHSIAN</strong>. PREDATORS FC enters the Ispahani Presents CGHS Futsal Carnival S3 with one goal - to pursue excellence through teamwork, discipline, and an unstoppable competitive spirit. we are ready to represent CGHS-18 with pride, passion, and the mentality of true predators. Every match is an opportunity to prove our strength, unity, and hunger for greatness.
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <a href="#" class="btn-action" style="background: #1877F2;"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="#" class="btn-action" style="background: #E1306C;"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="squad" class="section">
+            <div class="glass-card">
+                <h2 style="margin-bottom: 30px;"><i class="fas fa-shield-halved"></i> Team Roster</h2>
+                <div class="squad-grid" id="squad-mount">
+                    <div class="manager-card">
+                        <i class="fas fa-user-tie"></i>
+                        <div>
+                            <div class="m-label">Team Manager</div>
+                            <div class="m-name">Mustaqim Billah</div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="jersey" class="section">
+            <div class="glass-card">
+                <div class="jersey-layout">
+                    <div><img src="jersey.jpeg" style="width: 100%; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);" alt="Jersey"></div>
+                    <div>
+                        <h2>Official Kit</h2>
+                        <span class="sub-tag">Performance Wear</span>
+                        
+                        <div style="display: flex; gap: 20px; margin: -10px 0 25px 0; background: var(--off-white); padding: 12px 20px; border-radius: 15px; border: 1px solid var(--border-light);">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-layer-group" style="color: var(--ispahani-green);"></i>
+                                <span style="font-size: 0.85rem; font-weight: 700; color: var(--brand-navy);">180-220 GSM</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-wind" style="color: var(--ispahani-green);"></i>
+                                <span style="font-size: 0.85rem; font-weight: 700; color: var(--brand-navy);">Lurex Mesh Fabric</span>
+                            </div>
+                        </div>
+
+                        <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-light);">Available Sizes</span>
+                        <div class="size-grid">
+                            <div class="size-chip">M</div><div class="size-chip">L</div><div class="size-chip">XL</div>
+                            <div class="size-chip">2XL</div><div class="size-chip">3XL</div><div class="size-chip">4XL</div>
+                        </div>
+
+                        <div class="price-container">
+                            <div class="price-box"><span class="price-label">Half Sleeve</span><span class="price-value">৳ 530</span></div>
+                            <div class="price-box"><span class="price-label">Full Sleeve</span><span class="price-value">৳ 560</span></div>
+                        </div>
+
+                        <a href="#" class="btn-action"><i class="fas fa-shopping-cart"></i> ORDER NOW</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="glass-card">
+                <h2 style="margin-bottom: 25px;">About Us</h2>
+                <p class="about-p">
+                    <span class="about-highlight">PREDATORS FC</span> is the united football identity of CGHS-18, born from the merger of two teams — <span class="about-highlight">CGHS HAWKEYE</span> and <span class="about-highlight">CGHS MEGALODONS</span>.
+                </p>
+                <p class="about-p">
+                    Built on discipline, intensity, teamwork, and competitive spirit, PREDATORS FC represents more than just a team. It is a symbol of unity, ambition, and the relentless mindset of players who refuse to back down. By combining the precision and vision of the Hawkeye with the dominance and strength of the Megalodons, the team was created to form a new standard of excellence both on and off the field.
+                </p>
+                <p class="about-p">
+                    At PREDATORS FC, we believe football is about brotherhood, resilience, and representing our community with pride. Every match is played with passion, strategy, and the hunger to win — the true mentality of predators.
+                </p>
+                <p class="about-p">
+                    From local competitions to future championships, our mission is to build a legacy that inspires confidence and respect in every opponent we face.
+                </p>
+                <div style="font-family: 'Oswald'; font-size: 1.3rem; margin-top: 30px; border-top: 1px solid var(--border-light); padding-top: 20px; text-align: left;">
+                    One Team. One Identity.<br>
+                    <span style="color: var(--ispahani-green);">PREDATORS FC</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const squadData = [
+            { name: "Mohtasim Billah", pos: "Captain", cap: true },
+            { name: "Mahir Absar", pos: "Ala" }, { name: "Ezaz Alvi", pos: "Fixo" },
+            { name: "Inan Karim", pos: "Pivot" }, { name: "Albid Nawar", pos: "Ala" },
+            { name: "Rawnak Seyam", pos: "Fixo" }, { name: "Hasibul Tehan", pos: "GK" },
+            { name: "Abdul Toha", pos: "Ala" }, { name: "Abdullah Rafi", pos: "Pivot" },
+            { name: "Prithwi Raj", pos: "Fixo" }, { name: "Abrar Samir", pos: "Ala" },
+            { name: "Abid Chow", pos: "Pivot" }, { name: "Bablu Das", pos: "Ala" },
+            { name: "Muntasir Mamun", pos: "Fixo" }, { name: "Iftekhar Tahsin", pos: "Ala" },
+            { name: "Ahnaf Abid", pos: "Pivot" }, { name: "Alvin Saif", pos: "GK" },
+            { name: "Wasid", pos: "Player" }
+        ];
+
+        function renderSquad() {
+            const mount = document.getElementById('squad-mount');
+            squadData.forEach(p => {
+                const box = document.createElement('div');
+                box.className = 'player-box';
+                box.innerHTML = `
+                    ${p.cap ? '<div class="captain-badge">C</div>' : ''}
+                    <i class="fas fa-user-ninja" style="position:absolute;top:30%;left:50%;transform:translateX(-50%);font-size:3rem;color:rgba(0,104,55,0.05);"></i>
+                    <span style="font-weight: 800; color: var(--brand-navy);">${p.name}</span>
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--brand-red); text-transform: uppercase;">${p.pos}</span>
+                `;
+                mount.appendChild(box);
+            });
+        }
+
+        function toggleMenu() { 
+            document.getElementById('sideMenu').classList.toggle('active'); 
+        }
+
+        function nav(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+            const activeLink = document.querySelector(`.menu-item[onclick*="'${id}'"]`);
+            if(activeLink) activeLink.classList.add('active');
+            
+            if(document.getElementById('sideMenu').classList.contains('active')) toggleMenu();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderSquad);
+    </script>
+</body>
+</html>
